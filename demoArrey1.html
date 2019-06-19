@@ -1,0 +1,23 @@
+<script>
+   
+    
+    let t1, t2, t3, t4, t5, t6;
+    t1 =t2=t3=t4=t5=t6=0;
+    for(let i=0; i<100; i++){
+        let ball = parseInt(6 * Math.random()) + 1;
+        switch (ball) {
+        case 1: t1++;break;
+        case 2: t2++;break;
+        case 3: t3++;break;
+        case 4: t4++;break;
+        case 5: t5++;break;
+        case 6: t6++;break;
+    }
+    }
+    document.write(`T1 = ${t1} <br>`)
+    document.write(`T2 = ${t2} <br>`)
+    document.write(`T3 = ${t3} <br>`)
+    document.write(`T4 = ${t4} <br>`)
+    document.write(`T5 = ${t5} <br>`)
+    document.write(`T6 = ${t6} <br>`)
+</script>

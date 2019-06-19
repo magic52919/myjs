@@ -1,0 +1,48 @@
+<table width="100%" border="1" style="border-collapse: collapse">
+    <script>
+        let num =parseInt(prompt("要幾個數字", ''));
+        let num1 = parseInt(num / 10);
+        let num2 = parseInt(num % 10);
+        if (num1 > 0) {
+            console.log("1");
+            for (let j = 0; j < num1; j++) {
+                document.write("<tr>");  
+                for (let i = (10 * j) + 1; i < 10 * (j + 1)+1; i++) {
+                    if (!istrue(i)) {
+                        document.write("<td style='color:green'>");
+                    } else {
+                        document.write("<td bgcolor='red'>");
+                    }
+                    document.write(i);
+                    document.write("</td>");
+                }
+                document.write("</tr>");
+            }
+        }
+        if ((num2 > 0)) {
+            for (let l = 0; l < 1; l++) {
+                console.log("3");
+                document.write("<tr>");
+                for (let i = (10 * num1) + 1; i <= num; i++) {
+                    console.log("4");
+                    if (!istrue(i)) {
+                        document.write("<td style='color:green'>");
+                    } else {
+                        document.write("<td bgcolor='red'>");
+                    }
+                    document.write(i);
+                    document.write("</td>");
+                }
+                document.write("</tr>");
+            }
+        }
+        function istrue(n) {
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</table>

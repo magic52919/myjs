@@ -1,0 +1,57 @@
+<script src="magicApi.js"></script>
+<script>
+    let answer = createAnswer(3);
+    console.log(answer);
+    let log = '';
+    let times = 0;
+    let answernum;
+    let flag = false;
+    function doGuess() {
+        times++;
+        answernum = num.selectedIndex;
+        let guessElement = document.getElementById('guess');
+        let guess = guessElement.value;
+        let result = checkAB(answer, guess);
+        log += times + "." + guess + " => " + result + "<br>";
+        document.getElementById('log').innerHTML = log;
+        if (result == (answernum + 3) + 'A0B') {
+            alert('WINNER!');
+            flag = true;
+            reset();
+        } else if (times == 10) {
+            alert('Loser: answer is ' + answer);
+            flag = true;
+            reset();
+        } else {
+            alert(result);
+        }
+        guessElement.value = '';
+        guessElement.focus();
+    }
+    function reset() {
+        if (!flag) {
+            if (!confirm('Reset?')) return;
+        }
+        times = 0;
+        answernum = num.selectedIndex;
+        answer = createAnswer(answernum + 3);
+        console.log(answer);
+        log = '';
+        document.getElementById('log').innerHTML = log;
+        document.getElementById('guess').value = '';
+        document.getElementById('guess').focus();
+    }
+</script>
+<h1>猜數字遊戲</h1>
+<hr>
+<input type="numbet" id="guess">
+<input type="button" onclick="doGuess()" value="Guess">
+<input type="button" onclick="reset()" value="Reset">
+<select id="num">
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+</select>
+<hr>
+<div id="log"></div>

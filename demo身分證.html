@@ -1,0 +1,82 @@
+<script src="magicApi.js"></script>
+<script>
+    let record = '';
+    times = 0;
+    function ckId() {
+        let id = document.getElementById("id").value;
+        let isRight = checkTwId(id);
+        if (!isRight) {
+            alert("XX");
+        } else {
+            alert("OK");
+        }
+    }
+    function autoid() {
+        let twid = [];
+        let sexs = sex.selectedIndex;
+        let adressid = adress.value;
+        twid[0] = adressid;
+        twid[1] = (sexs == 0) ? 1 : 2;
+        for (i = 2; i < 10; i++) {
+            let rand = parseInt(Math.random() * 10);
+            twid[i] = rand;
+        }
+        let isRight = checkTwId(twid.join(''));
+        if (!isRight) {
+            autoid();
+        } else {
+            times++;
+            record += times + "." + "&nbsp" + twid.join('') + "<br>";
+            document.getElementById("record").innerHTML = record;
+            alert("已列出身分證，歡迎檢查");
+        }
+    }
+    function clearid() {
+        if (!confirm('Reset?')) return;
+        times = 0;
+        document.getElementById('record').innerHTML = record='';
+    }
+</script>
+<h1>身分證產生器</h1>
+<div>性別 :
+    <select id="sex">
+        <option value="1">男生</option>
+        <option value="2">女生</option>
+    </select>
+</div>
+<div>出生地 :
+    <select id="adress">
+        <option value="C">基隆市</option>
+        <option value="A">臺北市</option>
+        <option value="F">新北市</option>
+        <option value="B">臺中市</option>
+        <option value="H">桃園縣</option>
+        <option value="J">新竹縣</option>
+        <option value="O">新竹市</option>
+        <option value="K">苗栗縣</option>
+        <option value="L">臺中縣</option>
+        <option value="G">宜蘭縣</option>
+        <option value="N">彰化縣</option>
+        <option value="M">南投縣</option>
+        <option value="P">雲林縣</option>
+        <option value="Q">嘉義縣</option>
+        <option value="I">嘉義市</option>
+        <option value="D">臺南市</option>
+        <option value="E">高雄市</option>
+        <option value="T">屏東縣</option>
+        <option value="V">臺東縣</option>
+        <option value="U">花蓮縣</option>
+        <option value="X">澎湖縣</option>
+        <option value="W">金門縣</option>
+        <option value="Z">連江縣</option>
+    </select>
+</div>
+<br><span id="isId"></span>
+
+<input type="button" onclick="autoid()" value="produce">
+<input type="button" onclick="clearid()" value="clear">
+<div id="record"></div>
+<hr>
+<h1>驗證看看</h1>
+<input type="text" id="id">
+<input type="button" onclick="ckId()" value="check">

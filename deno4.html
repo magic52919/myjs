@@ -1,0 +1,17 @@
+<script>
+    let score = parseInt( 101*(Math.random())); 
+    //random 0 <= a < 1 
+    //101數字個數 不位移
+    if(score>=90)
+        document.write("A",score);
+    if(score<90 && score>=80)
+        document.write("B",score);
+    if(score<80 && score>=70)
+        document.write("C",score);
+    if(score<70 && score>=60)
+        document.write("D",score);
+    if(score<60)
+        document.write("E",score);
+
+        document.write("<hr>")
+</script>

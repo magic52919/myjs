@@ -1,0 +1,13 @@
+<script>
+let a=10,b=3;
+//運算自後 所以執行在前
+//false 遇到&不會跑去後面
+//& - 二進位運算兩邊都會跑  && - 布林值運算
+if ( --a>=10 & ++b <= 3){
+    document.write(`ok: ${a}/${b}`);
+}
+else{
+    document.write(`xx: ${a}/${b}`);
+}
+
+</script>

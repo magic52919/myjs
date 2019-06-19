@@ -1,0 +1,32 @@
+<script>
+
+</script>
+<table border="1" width="100%">
+    <script>
+        let row = parseInt(prompt("有幾列",''));
+        let start =2;
+        let nTd = parseInt(prompt("一列有幾個",''));
+        for (let k = 0; k < row; k++) {
+            document.write("<tr>");
+            for (let j = start; j < start+nTd; j++) {
+                let newj = j+k * nTd;
+                let ispink;
+                if(nTd %2 ==0){
+                    ispink = (newj + k)%2==0;
+                }else{
+                    ispink = (newj)%2==0;
+                }
+                //document.write("<td bgcolor='pink'>");
+                document.write("<td bgcolor='"+(ispink?"pink":"yellow")+"'>'");
+                for (let i = 1; i < 10; i++) {
+                    
+                    let r= newj * i;
+                    document.writeln(newj + 'x' + i + '=' + r+ "<br>");
+                }
+                document.write("</td>");
+            }
+            document.write("</tr>");
+        }
+
+    </script>
+</table>

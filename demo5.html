@@ -1,0 +1,18 @@
+<script>
+    let year = prompt("輸入年分", '');
+    let year2 = parseInt(year % 4);
+    let year4 = parseInt(year / 4);
+    let year100 = year % 100;
+    let year400 = year % 400;
+
+    if (year2 == 0) {
+        if (year100 == 0) {
+            if (year400 == 0)
+                document.write('閏年');
+            else document.write('非閏年');
+        }
+
+        else document.write('閏年');
+    }
+
+</script>
