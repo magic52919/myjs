@@ -1,0 +1,51 @@
+<script>
+    //物件宣告
+    let bike = new Object();
+    bike.speed = 12;
+    bike.gear = 2;
+    //屬性要改變要透過方法
+    bike.upSpeed = function () {
+        //本物件
+        this.speed = this.speed * this.gear *1.2;
+    }
+    bike.downSpeed = function () {
+        //本物件
+        this.speed = this.speed * 0.7;
+    }
+    document.write(bike.speed+"<br>");
+    bike.upSpeed();bike.upSpeed();bike.upSpeed();
+    bike.downSpeed();
+    document.write(bike.speed+"<br>");
+
+    //物件 >成員member 包含() 屬性=值 方法 =>function
+    let bike2 = {
+        speed: 4,
+        gear: 4,
+        upSpeed: function(){
+            this.speed = this.speed * 1.4;
+        }
+    }
+    document.write(bike2.speed+"<br>");
+    bike2.upSpeed();bike2.upSpeed();bike2.upSpeed();
+    document.write(bike2.speed+"<br>");
+
+    bike2['upSpeed']();
+    document.write(bike2.speed+"<br>");
+    let method = 'upSpeed';
+    bike2[method]();
+    document.write(bike2.speed+"<hr>");
+
+    for (let v in bike2){
+        document.write(v+":"+bike2[v] + "<br>");
+    }
+    document.write("<hr>");
+
+    var aa=123;
+    let bb=123;
+    for (let v in window){
+        document.write(v+":"+window[v] + "<br>");
+    }
+    
+
+
+</script>

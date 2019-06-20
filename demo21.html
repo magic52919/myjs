@@ -1,0 +1,31 @@
+<script>
+    function test1(){
+        let n =parseInt(Math.random()*101);
+        document.write(n+"<br>");
+        try{     
+        test2(n);
+        document.write(" okkkkkkkkk <br>");
+        }catch (e){//有括號代表有處理
+            alert("出4444了");
+            return;
+        }finally{//不管有無出事都一定會執行
+            document.write(" xxxxxxxxxx <br>");
+        }
+        document.write(" aaaaaaa <br>");
+        
+    }
+    
+    function test2(a) {
+        if (a >= 60) {
+            document.write("test2,ok<br>");
+        }else{
+            throw "happppppppy";
+        }
+    }
+
+</script>
+
+
+
+
+<input type="button" value="test" onclick="test1()">

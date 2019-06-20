@@ -1,0 +1,46 @@
+<script>
+let body = document.createElement('body');
+document.body = body;
+
+let head = document.createElement('h1');
+head.innerHTML = "XXXXX";
+document.body.appendChild(head);
+
+let h1text = document.createTextNode('hello');
+head.appendChild(h1text);
+document.body.appendChild(head);
+
+h1text.textContent='hello,xxx';
+let hr = document.createElement('hr');
+
+document.body.appendChild(hr);
+
+let ul = document.createElement('ul');
+body.appendChild(ul);
+let tempLi;
+for (let i=0; i<3; i++){
+    let li = document.createElement('li');
+    li.innerHTML = `第 ${i+1} 個內容資料`;
+    ul.appendChild(li);
+    if (i==1)tempLi=li;
+}
+ul.removeChild(tempLi);
+//只有一個物件;
+let hr2 = hr.cloneNode();
+body.appendChild(hr2);
+
+let ul2 = ul.cloneNode();
+body.appendChild(ul2);
+for (let i=0; i<3; i++){
+    let li = document.createElement('li');
+    li.innerHTML = `第 ${i+1} 個內容資料`;
+    ul2.appendChild(li);
+}
+
+
+
+let table =document.createElement('table');
+body.appendChild(table);
+let tr =document.createElement('tr');
+table.appendChild(tr);
+</script>

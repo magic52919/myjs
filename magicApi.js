@@ -61,3 +61,14 @@ function checkAB(ams,gus){
     }
 return a + 'A' + b + 'B';
 }
+function clone(source){
+    if(typeof(source)!='Object')return null;
+    let target = new Object();
+    for (let attr in source){
+        // if(source.hasOwnProperty(attr))hasOwnProperty擁有某個屬性
+        target[attr]=source[attr];
+    }
+    return target;
+    
+
+}

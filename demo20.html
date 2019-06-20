@@ -1,0 +1,21 @@
+<script>
+    let person = {
+        name: 'magic',
+        age: 22,
+        getInfo: function () {
+            return this.name + ":" + this.age;
+        }
+    }
+    for(let key in person){
+        console.log(key + ':' + person[key]);
+    }
+    let peter = {
+        // name: 'perter',
+        // age: 20,
+    }
+    let tony = {
+        name: 'tony',
+        age: 23,
+    }
+    document.write(person.getInfo.call(peter));
+</script>

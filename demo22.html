@@ -1,0 +1,56 @@
+<h1 id="head"></h1>
+<hr>
+<canvas id="canvas" width="480" height="320" style="border: 1px solid black"></canvas>
+<input type="button" onclick="clearCanvas()" value="clear">
+<input type="button" onclick="moveBall()" value="move">
+<script>
+    head.innerHTML = "xxx";
+    let ctx = canvas.getContext('2d'); //渲染
+    // ctx.fillStyle = 'rgb(255,0,0)'
+    // ctx.fillRect(50, 50, 100, 120);
+    // ctx.fillStyle = 'rgba(255,255,0, 0.5)';
+    // ctx.fillRect(70, 70, 200, 200);
+
+    // ctx.strokeStyle = 'rgb(0,0,255)';
+    // ctx.strokeRect(70, 70, 100, 100);
+
+    // ctx.beginPath();
+    // ctx.arc(75,100,50,20,Math.PI,true);
+    // ctx.stroke();
+    // ctx.lineTo(100, 75);
+    // ctx.lineTo(100, 25);
+    // ctx.stroke();
+    function clearCanvas(){
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+    }
+
+    let isDrag = false;
+    canvas.onmouseup = function (e) {
+        isDrag = false;
+    };
+    canvas.onmousedown = function (e) {
+
+        isDrag = true;
+        console.log(e.offsetX)
+        ctx.strokeStyle = 'rgb(0,0,255)';
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+    };
+
+    canvas.onmousemove = function (e) {       
+        if (isDrag) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        }
+    }
+    let ball = new Image();
+    ball.src = "ball.png";
+    //載入外部資源非立即性 onload載完再執行方法
+    ball.onload = function(){
+        ctx.drawImage(ball,240,240);
+    }
+    function moveBall(){
+        ctx.clearRect(240,240,48,48);
+        ctx.drawImage(ball,0,0);
+    }
+</script>

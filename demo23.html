@@ -1,0 +1,74 @@
+<canvas id="canvas" width="480" height="480" style="border: 1px solid black"></canvas>
+<script src="magicApi.js"></script>
+<script>
+    let ctx = canvas.getContext('2d');
+    let ballX = 100, ballY = 100;
+    let dx = 8, dy = 8;
+
+    let bg = new Image();
+    let balls = [];
+    bg.src = "LOVE.jpg";
+    let ball1 = new Image();
+    let ball2 = new Image();
+    let ball3 = new Image();
+    let balll = [ball1, ball2, ball3]
+    // let ballobj = {
+    //     x: 0,
+    //     y: 0,
+    //     dx: 8,
+    //     dy: 8,
+    //     img: 0,
+    // }
+    bg.onload = function () {
+        ctx.drawImage(bg, 0, 0);
+        ball1.src = "ball.png";
+        ball2.src = "ball1.png";
+        ball3.src = "ball2.png";
+        // ball.onload = function () {
+        //     ctx.drawImage(ball, ballX, ballY);
+        // }
+    }
+
+    function refreshView() {
+        ctx.clearRect(0, 0, canvas.widh, canvas.height);
+        ctx.drawImage(bg, 0, 0);
+        for (let i = 0; i < balls.length; i++) {
+            ctx.drawImage(balll[balls[i].img], balls[i].x, balls[i].y);
+        }
+    }
+    function go() {
+        for (let i = 0; i < balls.length; i++) {
+            moveBall(balls[i]);
+        }
+    }
+    function moveBall(obj) {
+        if (obj.x < 0 || obj.x + 48 > canvas.width) {
+            obj.dx *= -1;
+        }
+        if (obj.y < 0 || obj.y + 48 > canvas.height) {
+            obj.dy *= -1;
+        }
+        //單位距離 增加 速度變快
+        obj.x += obj.dx;
+        obj.y += obj.dy;
+    }
+    canvas.onmousedown = function (e) {
+        let ballobj = {
+            x: e.offsetX -24,
+            y: e.offsetY -24,
+            dx: 8,
+            dy: 8,
+            img : parseInt(Math.random()*3),
+        }
+        // let ballObject = clone(ballobj);
+        // ballObject.x = e.offsetX;
+        // ballObject.y = e.offsetY;
+        // ballObject.dx = 8;
+        // ballObject.dy = 8;
+        // ballObject.img = parseInt(Math.random() * 3);
+         balls[balls.length] = ballobj;
+    };
+    setInterval(refreshView, 30);
+    setInterval(go, 60);
+</script>
+<input type="button" onclick="go()" value="go">

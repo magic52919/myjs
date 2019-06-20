@@ -1,52 +1,61 @@
 <style>
     th,
     td {
+        width: 50;
+        height: 100;
         padding: 5px;
-        text-align: left;
+        text-align: center;
     }
 </style>
 <table width="100%" border="1" style="border-collapse: collapse">
 
     <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
+        <td id="1">1</td>
+        <td id="2">2</td>
+        <td id="3">3</td>
+        <td id="4">4</td>
+        <td id="5">5</td>
+        <td id="6">6</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td colspan="6" rowspan="5">Telephone</td>
-        <td>1</td>
+        <td id="18">18</td>
+        <td colspan="4" rowspan="3">Telephone</td>
+        <td id="7">7</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>1</td>
+        <td id="17">17</td>
+        <td id="8">8</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>1</td>
+        <td id="16">16</td>
+        <td id="9">9</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>1</td>
-    </tr>
-    
-    <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
+        <td id="15">15</td>
+        <td id="14">14</td>
+        <td id="13">13</td>
+        <td id="12">12</td>
+        <td id="11">11</td>
+        <td id="10">10</td>
     </tr>
 </table>
+<input type="button" value="start" onclick="start()">
+<script>
+    let i = 1;
+    function start() {
+        setInterval(repeat, 1000);
+        setTimeout(stop, 2000);
+    }
+    function repeat() {
+        let m=parseInt(i-1);
+        document.getElementById(String(m)).style.backgroundColor = "red";
+        document.getElementById(i).style.backgroundColor = "green";
+        i++
+        
+        if (i > 17) {
+            document.getElementById(i).style.backgroundColor = "green";
+            i = i-17;
+        }
+    }
+
+</script>
