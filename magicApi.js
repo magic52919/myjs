@@ -49,26 +49,38 @@ function createAnswer(num) {
     for (let i = 0; i < num; i++)ret += poker[i];
     return ret;
 }
-function checkAB(ams,gus){
-    let a=0,b=0;
-    for(let i=0; i<gus.length; i++){
+function checkAB(ams, gus) {
+    let a = 0, b = 0;
+    for (let i = 0; i < gus.length; i++) {
         //gus中的I碼==ans中的第I碼
-        if(gus.charAt(i)==ams.charAt(i)){
+        if (gus.charAt(i) == ams.charAt(i)) {
             a++;
-        }else if(ams.indexOf(gus.charAt(i)) >= 0){      //gus中的I碼是否存在於 ans中
+        } else if (ams.indexOf(gus.charAt(i)) >= 0) {      //gus中的I碼是否存在於 ans中
             b++;
         }
     }
-return a + 'A' + b + 'B';
+    return a + 'A' + b + 'B';
 }
-function clone(source){
-    if(typeof(source)!='Object')return null;
+function clone(source) {
+    if (source == null || typeof (source) != 'object') return null;
     let target = new Object();
-    for (let attr in source){
-        // if(source.hasOwnProperty(attr))hasOwnProperty擁有某個屬性
-        target[attr]=source[attr];
+    for (let attr in source) {
+        if (typeof source[attr] != 'object') {
+            // if(source.hasOwnProperty(attr))hasOwnProperty擁有某個屬性
+            target[attr] = source[attr];
+        } else {
+            target[attr] = clone(source[attr]);
+        }
     }
     return target;
-    
-
+}
+Date.prototype.getWeek = function () {
+    let w = this.getDay();
+    let ws = ['星期日', '星期一', '星期二', '星期三', '星期三', '星期四', '星期五', '星期六',];
+    return ws[w];
+}
+Date.prototype.getTwyear = function () {
+    let w = this.getFullYear();
+    let y = w-1911;
+    return y;
 }

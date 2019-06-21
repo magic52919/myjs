@@ -1,0 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<h1 id="test1"> magic</h1>
+<div id="container">
+    <h1>H1</h1>
+    <p>p1</p>
+    <hr>
+    <h1>H2</h1>
+    <p>p2</p>
+</div>
+<hr>
+<input type="button" value="go!" name="" id="go">
+<input type="text" value="go!" class="inputText">
+<input type="text" value="go!" class="inputText">
+<input type="text" value="go!" class="inputText">
+<script>
+    //$(selector) => element(s);
+    //ex h1 $('h1') , a => $('a')
+    //id = 'test1' => $('#test1')
+    //class='group' => $('.group')
+    //$('#container p)
+    //$只要沒有包  就是給物件
+    $('#test1').click(function () {
+        $('#test1').css('color','blue').css('background-color','red');
+        let ps = $('p');
+        for (let p of ps){
+            p.style.color = 'blue';
+            p.style.backgroundColor = 'yellow';
+        }
+
+        $jObj = $(document.getElementById('container'));
+        $jObj.css('background-color','pink');
+    });
+    let isclickDisable = false;
+    $('#go').click(function(){
+        isclickDisable = !isclickDisable;
+        $(this).attr('disbaled',isclickDisable);
+        setTimeout(toclick,3000);
+        $('.inputText').val("hello,world");
+
+    })
+function toclick(){
+    console.log("to");
+    isclickDisable = false;
+    $('#go').attr('disbaled',isclickDisable);
+}
+
+</script>

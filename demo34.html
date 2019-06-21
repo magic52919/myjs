@@ -1,0 +1,41 @@
+<script src="magicApi.js"></script>
+<script>
+    function test1() {
+        window.open("", "my", "width=200,height =100");
+        let twid = document.getElementById('twid').value;
+        console.log(typeof (twid));
+    }
+    console.log(navigator.language);
+
+    function got() {
+        let account = document.getElementById('account').value;
+        let Password1 = document.getElementById('password1').value;
+        let Password2 = document.getElementById('password2').value;
+        let twid = document.getElementById('twid').value;
+        let ret = true;
+        checkTwId(twid)
+        return ret;
+    }
+    function checksamepasswd() {
+        let Password1 = document.getElementById('password1').value;
+        let Password2 = document.getElementById('password2').value;
+        if (Password1.length > 0 && Password2.length > 0) {
+            if (Password1 != Password2) {
+                alert("not same");
+            }
+        }
+    }
+
+</script>
+<input type="vutton" onclick="test1()" value="test1">
+<form id="myform" action="test.php" onsubmit="return got();" 
+enctype="multipart/form-data" method="post">
+    *Account : <input type="text" id="account"><br>
+    <!-- onbur 失去焦點判斷; -->
+    *Password1 : <input type="text" id="password1" onblur="checksamepasswd()"><br>
+    *Password2 : <input type="text" id="password2" onblur="checksamepasswd()"><br>
+    *TW id :<input type="text" id="twid"><br>
+    Memo : <textarea id="memo"></textarea><br>
+    <input type="file">
+    <input type="submit" value="送出">
+</form>

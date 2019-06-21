@@ -1,0 +1,54 @@
+<script src="magicApi.js"></script>
+<script>
+    let person = {
+        name: 'magic',
+        age: 20,
+        weight: 100,
+        bike: [
+            {
+                name: 'bb',
+                speed: 20,
+            },
+            {
+                name: 'cc',
+                speed: 90,
+            },
+        ],
+        eat: function(){
+            console.log('eat');
+        }
+    }
+    let strPerson = JSON.stringify(person);
+    console.log(strPerson);
+
+
+    let person2 = JSON.parse(strPerson);
+    console.log(typeof (person2));
+    for (let key in person2) {
+        console.log(key + ';' + person2[key]);
+        // if (key == 'object') {
+        //     for (let keys in key) {
+        //         console.log(keys + ';' + key[keys]);
+        //     }
+        // }
+    }
+
+    console.log(person2 === strPerson);
+
+    console.log(person2.name);
+    console.log(person2.bike[1].name);
+    person2.name = 'eeee';
+    person2.bike[1].name = 23232;
+    console.log(person.name);
+    console.log(person.bike[1].name);
+    console.log(person2.name);
+    console.log(person2.bike[1].name);
+
+
+//字串不包含方法
+    //person2.eat();
+
+
+    let person3 = clone(person);
+    person3.eat();
+</script>

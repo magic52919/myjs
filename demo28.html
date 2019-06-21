@@ -1,0 +1,28 @@
+<script>
+    let bike = function(name,speed){
+        console.log("bike()");
+        this.name = name;
+        this.speed = speed;
+        console.log("bike()"+':'+this.name );
+    }
+    bike.chspeed=function(speed){
+        this.speed = speed;
+        console.log("bike:chspeed()");
+    }
+    bike.prototype.chspeed = function(speed){
+        console.log("prototype:chspeed()");
+    }
+
+    let b1 = new bike('magic',12);
+    b1.chspeed=function(speed){
+        console.log("b1:chspeed()");
+    }
+    let b2 = new bike('aaa',34);
+    b1.chspeed(123);
+    b2.chspeed(123);
+    bike.prototype.chname = function(name){
+        this.name = name;
+        console.log("bike:chname()");
+    }
+
+</script>

@@ -1,0 +1,66 @@
+<script>
+    class bike {
+        constructor(speed) {
+            console.log("nnnnnn");
+            this.speed = speed;
+            this.name = '';
+        }
+        upspeed() {
+            this.speed += 1.2;
+        }
+        static m1() {
+            console.log("bike:m1");
+        }
+    }
+
+    class Scooter extends bike {
+        constructor(speed, gear) {
+            //this前一定要super 呼叫父類別
+            super(speed);
+            console.log("SSSSSS");
+            this.speed = speed;
+            this.gear = gear;
+        }
+        setgear(gear) {
+            this.gear = gear;
+            console.log(gear);
+        }
+        upspeed() {
+            this.speed = this.speed * (this.gear + 1.2);
+        }
+        //永遠與物件無關 不能有this存在
+        //分類在哪邊    
+        static m1() {
+            console.log("bike:m1");
+        }
+    }
+
+    class magic {
+        //不定個數
+        constructor(...x) {
+            console.log("OK");
+        }
+    }
+    let b1 = new bike(12);
+    console.log(b1.speed);
+    console.log(b1.name);
+
+    let s1 = new Scooter(12);
+    console.log(s1.speed);
+    console.log(s1.name);
+    s1.setgear(4);
+    console.log(b1 instanceof bike);
+    console.log(s1 instanceof bike);
+    console.log(s1 instanceof Scooter);
+    console.log(b1 instanceof Scooter);
+
+    let magic1 = new magic();
+    let magic2 = new magic(1);
+    let magic3 = new magic(1, 2);
+
+    let d = new Date(2019, 6, 21, '', '', '');
+    console.log(d);
+    bike.m1();
+    Scooter.m1();
+
+</script>

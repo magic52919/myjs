@@ -7,6 +7,7 @@
         text-align: center;
     }
 </style>
+
 <table width="100%" border="1" style="border-collapse: collapse">
 
     <tr>
@@ -39,22 +40,47 @@
         <td id="10">10</td>
     </tr>
 </table>
+<span id="0"></span>
 <input type="button" value="start" onclick="start()">
+<input type="button" value="stop" onclick="stop()">
 <script>
     let i = 1;
+    let cir;
+    let flag = 0;
+    let isStop = 0;
+    let isStops = 0;
     function start() {
-        setInterval(repeat, 1000);
-        setTimeout(stop, 2000);
+        cir = setInterval(repeat, 400);
+        setTimeout(stop, 1000);
+        isStops=1;
     }
     function repeat() {
-        let m=parseInt(i-1);
-        document.getElementById(String(m)).style.backgroundColor = "red";
+        if (i > 18) {
+            document.getElementById(18).style.backgroundColor = "";
+            i = i - 18;
+        }
+        document.getElementById(i - 1).style.backgroundColor = "";
         document.getElementById(i).style.backgroundColor = "green";
-        i++
-        
-        if (i > 17) {
-            document.getElementById(i).style.backgroundColor = "green";
-            i = i-17;
+        console.log(i);
+        i++;
+    }
+    function stop() {
+        if (flag == 0 && isStops != 0) {
+            clearInterval(cir);
+            cir = setInterval(repeat, 200);
+            flag = 1;
+        } else {
+            clearInterval(cir);
+            if (isStop == 0 && isStops != 0) {
+                cir = setInterval(repeat, 400);
+                setTimeout(stop, 3000);
+                isStop = 1;
+            } else {
+                clearInterval(cir);
+                isStop = 0;
+                flag = 0;
+                isStops = 0;
+            }
         }
     }
 
