@@ -1,0 +1,39 @@
+th,td {
+    width: 50;
+    height: 100;
+    padding: 5px;
+    text-align: center;
+    background-position: center; 
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+.apple{
+    background-image: url('../apple.png');
+}
+.Watermelon{
+    background-image: url('../Watermelon.png');
+}
+.Lemon{
+    background-image: url('../Lemon.png');
+}
+.number7{
+    background-image: url('../number7.png');
+}
+.orange{
+    background-image: url('../orange.png');
+}
+.noover{
+    background-image: url('../noover.png');
+}
+#icon{
+    width:"100%";
+    position: relative;
+}
+#icon input{
+    height: 45; 
+    width: 7%;
+    background-position: center; 
+    background-size:contain;
+    background-repeat: no-repeat;
+    text-align: right;
+}

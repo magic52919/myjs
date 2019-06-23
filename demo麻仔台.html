@@ -1,87 +1,152 @@
-<style>
-    th,
-    td {
-        width: 50;
-        height: 100;
-        padding: 5px;
-        text-align: center;
-    }
-</style>
+
+<link rel="stylesheet" href="css/demo.css">
 
 <table width="100%" border="1" style="border-collapse: collapse">
-
     <tr>
-        <td id="1">1</td>
-        <td id="2">2</td>
-        <td id="3">3</td>
-        <td id="4">4</td>
-        <td id="5">5</td>
-        <td id="6">6</td>
+        <td id="1" class="noover">1</td>
+        <td id="2" class="apple"></td>
+        <td id="3" class="orange"></td>
+        <td id="4" class="Watermelon"></td>
+        <td id="5" class="noover"></td>
+        <td id="6" class="Lemon"></td>
     </tr>
     <tr>
-        <td id="18">18</td>
-        <td colspan="4" rowspan="3">Telephone</td>
-        <td id="7">7</td>
+        <td id="18" class="Watermelon"></td>
+        <td colspan="4" rowspan="3" style="font-size:32px" id="Profit">請投注</td>
+        <td id="7" class="apple"></td>
     </tr>
     <tr>
-        <td id="17">17</td>
-        <td id="8">8</td>
+        <td id="17" class="apple"></td>
+        <td id="8" class="Lemon"></td>
     </tr>
     <tr>
-        <td id="16">16</td>
-        <td id="9">9</td>
+        <td id="16" class="Watermelon"></td>
+        <td id="9" class="number7"></td>
     </tr>
     <tr>
-        <td id="15">15</td>
-        <td id="14">14</td>
-        <td id="13">13</td>
-        <td id="12">12</td>
-        <td id="11">11</td>
-        <td id="10">10</td>
+        <td id="15" class="Lemon"></td>
+        <td id="14" class="Watermelon"></td>
+        <td id="13" class="apple"></td>
+        <td id="12" class="orange"></td>
+        <td id="11" class="noover"></td>
+        <td id="10" class="Watermelon"></td>
     </tr>
 </table>
 <span id="0"></span>
-<input type="button" value="start" onclick="start()">
-<input type="button" value="stop" onclick="stop()">
+<div><input type="button" style="height: 45px; width:45px" value="start" onclick="start()" id="start"></div>
+<br>
+<div id="icon">
+    <input type="button" value="''" style="background-image: url(Watermelon.png)" onclick="many('Wa')">
+    <input type="text" value="0" id="Wa">
+    <input type="button" value="''" style="background-image: url(apple.png)" onclick="many('Ap')">
+    <input type="text" value="0"  id="Ap">
+    <input type="button" value="''" style="background-image: url(Lemon.png)" onclick="many('Le')">
+    <input type="text" value="0"  id="Le">
+    <input type="button" value="''" style="background-image: url(orange.png)" onclick="many('Or')">
+    <input type="text" value="0" id="Or">
+    <input type="button" value="''" style="background-image: url(number7.png)" onclick="many('N7')">
+    <input type="text" value="0" id="N7">
+    <input type="button" value="clear" style="text-align: center;float: right" onclick="clean()">
+</div>
 <script>
     let i = 1;
+    let delay = 1000;
+    let times = 0;
     let cir;
-    let flag = 0;
-    let isStop = 0;
-    let isStops = 0;
+    let isclickDisable = false;
+    //開始執行
     function start() {
-        cir = setInterval(repeat, 400);
-        setTimeout(stop, 1000);
-        isStops=1;
-    }
-    function repeat() {
+        clearTimeout(cir);
+        isclickDisable = !isclickDisable;
+        document.getElementById('start').disabled = isclickDisable;
+        if(delay < 20){
+            isclickDisable = false;
+            stop();
+            return;
+        }
         if (i > 18) {
             document.getElementById(18).style.backgroundColor = "";
             i = i - 18;
         }
         document.getElementById(i - 1).style.backgroundColor = "";
-        document.getElementById(i).style.backgroundColor = "green";
-        console.log(i);
+        document.getElementById(i).style.backgroundColor = "red";
         i++;
+        setTimeout(start, delay+parseInt(Math.random()*500));
+        delay -= delay/5;
+    }
+    //點擊輸入
+    function many(fruit){
+        let n =document.getElementById(fruit).value;
+        n++;
+        console.log(fruit);
+        document.getElementById(fruit).value = n;
+    }
+    //投注清空
+    function clean(){
+        let n=0;
+        document.getElementById('Wa').value = n;
+        document.getElementById('Ap').value = n;
+        document.getElementById('Le').value = n;
+        document.getElementById('Or').value = n;
+        document.getElementById('N7').value = n;
     }
     function stop() {
-        if (flag == 0 && isStops != 0) {
-            clearInterval(cir);
-            cir = setInterval(repeat, 200);
-            flag = 1;
-        } else {
-            clearInterval(cir);
-            if (isStop == 0 && isStops != 0) {
-                cir = setInterval(repeat, 400);
-                setTimeout(stop, 3000);
-                isStop = 1;
-            } else {
-                clearInterval(cir);
-                isStop = 0;
-                flag = 0;
-                isStops = 0;
-            }
-        }
+    if(delay>(Math.random()*500+1500)){
+        delay = 1000;
+        document.getElementById('start').disabled = isclickDisable;
+        Profit((i-1));
+        time3();
+        clean();
+        return;
     }
+    if (i > 18) {
+        document.getElementById(18).style.backgroundColor = "";
+        i = i - 18;
+    }
+    document.getElementById(i - 1).style.backgroundColor = "";
+    document.getElementById(i).style.backgroundColor = "red";
+    i++;
+    if(delay >= 3000)return;
+    setTimeout(stop,delay);
+    delay *= 1.5; 
+}
+//中獎的時候閃爍
+function time3(){
+    times++;
+    if(times==3){
+        times =1;
+    }
+    if(times==1)document.getElementById(i-1).style.backgroundColor = "";
+    if(times==2)document.getElementById(i-1).style.backgroundColor = "red";
+    cir=setTimeout(time3,500)
+}
+    function Profit(n){
+        switch(n){
+            //wa
+            case 4:  case 10:  case 14:  case 16:  case 18: 
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('Wa').value *1;
+            break;
+            //ap
+            case 2:  case 7:  case 13:  case 17:
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('Ap').value *2;
+            break;
+            //lE
+            case 6:  case 8:  case 15:  
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('Le').value *5;
+            break;
+            //NO
+            case 1:  case 5:  case 11: 
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('Wa').value *0;
+            break;
+            //OR
+            case 3:  case 12: 
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('Or').value *10;
+            break;
+            //77
+            case 9:
+            document.getElementById('Profit').innerHTML = "恭喜獲得"+''+document.getElementById('N7').value *50;
+            break;
+        }
 
+    }
 </script>
